@@ -27,9 +27,6 @@ async function run() {
     const currentUrl = currentJson.data.download_url;
     const pastUrl = pastJson.data.download_url;
 
-    console.log(`${currentUrl}`);
-    console.log(`${pastUrl}`);
-
     async function getContent(url) {
       try {
         const response = await axios.get(url);
@@ -39,8 +36,12 @@ async function run() {
       }
     }
     const currentUrlResponse = await getContent(currentUrl);
-    //const currentJsonBody = await currentUrlResponse.json();
-    console.log(currentUrlResponse);
+    const { data: current } = currentUrlResponse;
+    const pastUrlResponse = await getContent(pastUrl);
+    const { data: past } = pastUrlResponse;
+
+    console.log(current);
+    console.log(past);
 
     // `who-to-greet` input defined in action metadata file
     const nameToGreet = core.getInput('who-to-greet');
