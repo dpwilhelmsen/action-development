@@ -18,14 +18,14 @@ async function run() {
       path: 'app.json',
     });
 
-    const pastJson = await octokit.rest.repos.getContent({
-      ...context.repo,
-      path: 'app.json',
-      ref: tags[1].name,
-    });
+    // const pastJson = await octokit.rest.repos.getContent({
+    //   ...context.repo,
+    //   path: 'app.json',
+    //   ref: tags[1].name,
+    // });
 
     console.log(`currentJson: ${currentJson}`);
-    console.log(`pastJson: ${pastJson}`);
+    //console.log(`pastJson: ${pastJson}`);
 
     console.log(`tags: ${tagResponse}`);
 
