@@ -12,7 +12,7 @@ async function run() {
     });
     const tagResponse = JSON.stringify(tagFetchRequest, undefined, 2);
 
-    const { data: tags } = tagResponse;
+    const { data: tags } = tagFetchRequest;
     const currentJson = await octokit.rest.repos.getContent({
       ...context.repo,
       path: 'app.json',
