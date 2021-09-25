@@ -7,12 +7,14 @@ async function run() {
 
     const octokit = github.getOctokit(myToken)
     const context = github.context;
-    const tags = await octokit.rest.repos.listTags({
+    const tagFetchRequest = await octokit.rest.repos.listTags({
       ...context.repo,
     });
-    const tagOutput = JSON.stringify(tags, undefined, 2)
+    const tagResponse = JSON.stringify(tagFetchRequest, undefined, 2);
 
-    console.log(`tags: ${tagOutput}`);
+    const { data: tags } = tagResponse;
+
+    console.log(`tags: ${tagResponse}`);
 
     // `who-to-greet` input defined in action metadata file
     const nameToGreet = core.getInput('who-to-greet');
