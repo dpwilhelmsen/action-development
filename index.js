@@ -1,5 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
+import fetch from 'node-fetch';
 
 async function run() {
   try {
@@ -23,8 +24,15 @@ async function run() {
       ref: tags[1].name,
     });
 
-    console.log(`currentJson: ${JSON.stringify(currentJson, undefined, 2)}`);
-    console.log(`pastJson: ${JSON.stringify(pastJson, undefined, 2)}`);
+    const currentUrl = currentJson?.data?.url;
+    const pastUrl = pastJson?.data?.url;
+
+    console.log(`${currentUrl}`);
+    console.log(`${pastUrl}`);
+
+    const currentUrlResponse = await fetch(currentUrl);
+    const currentJsonBody = await currentUrlResponse.json();
+    console.log(currentJsonBody);
 
     // `who-to-greet` input defined in action metadata file
     const nameToGreet = core.getInput('who-to-greet');
