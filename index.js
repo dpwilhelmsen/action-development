@@ -2,6 +2,16 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 
 try {
+  const myToken = core.getInput('myToken');
+
+  const octokit = github.getOctokit(myToken)
+  const context = github.context;
+  const tags = await octokit.rest.repos.listTags({
+    ...context.repo,
+  });
+
+  console.log(`tags: ${tags}`);
+
   // `who-to-greet` input defined in action metadata file
   const nameToGreet = core.getInput('who-to-greet');
   console.log(`Hello ${nameToGreet}!`);
