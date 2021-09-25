@@ -10,25 +10,21 @@ async function run() {
     const tagFetchRequest = await octokit.rest.repos.listTags({
       ...context.repo,
     });
-    const tagResponse = JSON.stringify(tagFetchRequest, undefined, 2);
 
     const { data: tags } = tagFetchRequest;
-    console.log(tags[1]);
     const currentJson = await octokit.rest.repos.getContent({
       ...context.repo,
       path: 'app.json',
     });
 
-    // const pastJson = await octokit.rest.repos.getContent({
-    //   ...context.repo,
-    //   path: 'app.json',
-    //   ref: tags[1].name,
-    // });
+    const pastJson = await octokit.rest.repos.getContent({
+      ...context.repo,
+      path: 'app.json',
+      ref: tags[1].name,
+    });
 
     console.log(`currentJson: ${JSON.stringify(currentJson, undefined, 2)}`);
-    //console.log(`pastJson: ${pastJson}`);
-
-    console.log(`tags: ${tagResponse}`);
+    console.log(`pastJson: ${JSON.stringify(pastJson, undefined, 2)}`);
 
     // `who-to-greet` input defined in action metadata file
     const nameToGreet = core.getInput('who-to-greet');
