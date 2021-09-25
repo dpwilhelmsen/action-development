@@ -25,7 +25,7 @@ async function run() {
     });
 
     console.log(`currentJson: ${currentJson}`);
-    console.log(`pastJson: ${past}`);
+    console.log(`pastJson: ${pastJson}`);
 
     console.log(`tags: ${tagResponse}`);
 
