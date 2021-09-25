@@ -1,6 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+const axios = require('axios');
 
 async function run() {
   try {
@@ -30,9 +30,17 @@ async function run() {
     console.log(`${currentUrl}`);
     console.log(`${pastUrl}`);
 
-    const currentUrlResponse = await fetch(currentUrl);
-    const currentJsonBody = await currentUrlResponse.json();
-    console.log(currentJsonBody);
+    async function getContent(url) {
+      try {
+        const response = await axios.get(url);
+        return response;
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    const currentUrlResponse = await getContent(currentUrl);
+    //const currentJsonBody = await currentUrlResponse.json();
+    console.log(currentUrlResponse);
 
     // `who-to-greet` input defined in action metadata file
     const nameToGreet = core.getInput('who-to-greet');
