@@ -10,8 +10,9 @@ async function run() {
     const tags = await octokit.rest.repos.listTags({
       ...context.repo,
     });
+    const tagOutput = JSON.stringify(tags, undefined, 2)
 
-    console.log(`tags: ${tags}`);
+    console.log(`tags: ${tagOutput}`);
 
     // `who-to-greet` input defined in action metadata file
     const nameToGreet = core.getInput('who-to-greet');
