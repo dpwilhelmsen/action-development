@@ -24,8 +24,8 @@ async function run() {
       ref: tags[1].name,
     });
 
-    const currentUrl = currentJson?.data?.url;
-    const pastUrl = pastJson?.data?.url;
+    const currentUrl = currentJson.data.url;
+    const pastUrl = pastJson.data.url;
 
     console.log(`${currentUrl}`);
     console.log(`${pastUrl}`);
