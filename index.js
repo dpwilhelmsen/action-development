@@ -18,6 +18,7 @@ async function run() {
     const currentJson = await octokit.rest.repos.getContent({
       ...context.repo,
       path: filePath,
+      ref: tags[0].name,
     });
 
     const pastJson = await octokit.rest.repos.getContent({

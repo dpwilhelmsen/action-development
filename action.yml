@@ -1,5 +1,5 @@
-name: 'Check changes of JSON values'
-description: 'Check changes of JSON values'
+name: 'Compare JSON values at last two tags'
+description: 'This action compares a json file at the last two tags and determines if any of the given values have changed.'
 inputs:
   githubToken:
     description: 'Github Token'
