@@ -6,6 +6,7 @@ async function run() {
   try {
     const githubToken = core.getInput('githubToken');
     const keysToCheck = JSON.parse(core.getInput('compareKeys'));
+    const filePath = core.getInput('filePath');
 
     const octokit = github.getOctokit(githubToken)
     const context = github.context;
@@ -16,12 +17,12 @@ async function run() {
     const { data: tags } = tagFetchRequest;
     const currentJson = await octokit.rest.repos.getContent({
       ...context.repo,
-      path: 'app.json',
+      path: filePath,
     });
 
     const pastJson = await octokit.rest.repos.getContent({
       ...context.repo,
-      path: 'app.json',
+      path: filePath,
       ref: tags[1].name,
     });
 
@@ -41,8 +42,6 @@ async function run() {
     const pastUrlResponse = await getContent(pastUrl);
     const { data: past } = pastUrlResponse;
 
-    console.log(current);
-    console.log(past);
     let matches = true;
 
     for(let i = 0; i < keysToCheck.length; i++) {

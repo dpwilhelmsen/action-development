@@ -7,9 +7,12 @@ inputs:
   compareKeys:
     description: 'Object keys to compare (JSON encoded)'
     required: true
+  filePath:
+    description: 'Path to the JSON file to check'
+    required: true
 outputs:
   valuesMatch: # id of output
     description: 'Whether the values of the compared jsons match'
 runs:
   using: 'node12'
-  main: 'index.js'
+  main: 'dist/index.js'

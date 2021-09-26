@@ -1,21 +1,28 @@
-# Hello world javascript action
+# Compare JSON values at last two tags
 
-This action prints "Hello World" or "Hello" + the name of a person to greet to the log.
+This action compares a json file at the last two tags and determines if any of the given values have changed.
 
 ## Inputs
 
-## `who-to-greet`
+## `githubToken`
 
-**Required** The name of the person to greet. Default `"World"`.
+**Required** The user's github token, provided by `${{ secrets.GITHUB_TOKEN }}`.
+
+## `compareKeys`
+
+**Required** A JSON stringified array of keys on the target objects to compare.
+
+## `filePath`
+
+**Required** The path from the root of the project to the json file to compare.
 
 ## Outputs
 
-## `time`
+## `valuesMatch`
 
-The time we greeted you.
+Whether all the values match. True if nothing has changed, false if they have.
 
-## Example usage
+## Development
 
-uses: actions/hello-world-javascript-action@v1.1
-with:
-who-to-greet: 'Mona the Octocat'
+The javascript source is located in `index.js` and is compiled with `@vercel/ncc`. To build, first install `ncc`
+using `npm i -g @vercel/ncc`. Then compile with the command: `ncc build index.js`
