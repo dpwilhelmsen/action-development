@@ -1,17 +1,15 @@
 name: 'Check changes of JSON values'
 description: 'Check changes of JSON values'
-main: 'dist/index.js'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
-    required: true
-    default: 'World'
-  myToken:
+  githubToken:
     description: 'Github Token'
     required: true
+  compareKeys:
+    description: 'Object keys to compare (JSON encoded)'
+    required: true
 outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  valuesMatch: # id of output
+    description: 'Whether the values of the compared jsons match'
 runs:
   using: 'node12'
   main: 'index.js'
