@@ -1,6 +1,7 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 const axios = require('axios');
+const isEqual = require('lodash/isEqual');
 
 async function run() {
   try {
@@ -46,7 +47,7 @@ async function run() {
     let matches = true;
 
     for(let i = 0; i < keysToCheck.length; i++) {
-      if (current[keysToCheck[i]] !== past[keysToCheck[i]]) {
+      if (!isEqual(current[keysToCheck[i]], past[keysToCheck[i]])) {
         matches = false;
         break;
       }
