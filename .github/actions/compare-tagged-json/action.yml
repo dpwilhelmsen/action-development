@@ -15,4 +15,4 @@ outputs:
     description: 'Whether the values of the compared jsons match'
 runs:
   using: 'node12'
-  main: 'dist/index.js'
+  main: '.github/actions/compare-tagged-json/dist/index.js'

@@ -10,7 +10,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Hello world action step
-        uses: ./ # Uses an action in the root directory
+        uses: ./.github/actions/compare-tagged-json # Uses an action in the root directory
         id: compare
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
